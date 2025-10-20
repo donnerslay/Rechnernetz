@@ -1,0 +1,102 @@
+!
+version 15.1
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R2
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+!
+no ip cef
+ipv6 unicast-routing
+!
+no ipv6 cef
+!
+!
+!
+!
+license udi pid CISCO2901/K9 sn FTX152459HH-
+!
+!
+!
+!
+!
+!
+!
+!
+!
+no ip domain-lookup
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ ipv6 address 2001:DB8:1:2::1/64
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/0/0
+ description serial interface to R1 as DTE
+ no ip address
+ ipv6 address 2001:DB8:1:A001::2/64
+!
+interface Serial0/0/1
+ description serial link to R3 as DCE
+ no ip address
+ ipv6 address 2001:DB8:1:A002::1/64
+ clock rate 64000
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+ip route 172.16.30.0 255.255.255.0 172.16.20.1 
+ip route 172.16.10.0 255.255.255.0 172.16.20.1 
+ip route 192.168.40.0 255.255.255.0 192.168.50.2 
+!
+ip flow-export version 9
+!
+ipv6 route 2001:DB8:1:1::/64 2001:DB8:1:A001::1
+ipv6 route 2001:DB8:1:3::/64 2001:DB8:1:A002::2
+!
+!
+banner motd #Hello from Router#
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+!
+!
+!
+end
+
