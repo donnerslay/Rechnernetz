@@ -181,9 +181,9 @@ R1 als DHCP-Server, R2 und R3 müssen auch als DHCP-Relay funktionieren.
 In R1:
 ```yaml
 R1(config)# service dhcp
-R1(config)# ip dhcp excluded-address 172.16.240.1 172.16.240.1.für PC1
-R1(config)# ip dhcp excluded-address 172.16.128.1 172.16.128.1.für PC2
-R1(config)# ip dhcp excluded-address 172.16.252.1 172.16.252.1.für PC3
+R1(config)# ip dhcp excluded-address 172.16.240.1 172.16.240.10 \\ für PC1
+R1(config)# ip dhcp excluded-address 172.16.128.1 172.16.128.10 \\ für PC2
+R1(config)# ip dhcp excluded-address 172.16.252.1 172.16.252.10 \\ für PC3
 
 
 R1(config)# ip dhcp pool PC1_NET
